@@ -1,0 +1,13 @@
+<div class="bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-slate-700">
+  <div class="aspect-[3/4] bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center p-3">
+    <img [src]="imageUrl()" [alt]="'Page ' + image().pageNumber" class="max-w-full max-h-full object-contain rounded-lg shadow-sm" />
+  </div>
+  <div class="flex items-center justify-between p-4 border-t border-slate-700 bg-slate-800/50">
+    <span class="text-sm font-semibold text-slate-300">Page {{ image().pageNumber }}</span>
+    <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white text-sm font-semibold rounded-lg hover:bg-indigo-400 transition-colors" (click)="onDownload()">
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+    </button>
+  </div>
+</div>
