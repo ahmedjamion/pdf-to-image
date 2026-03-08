@@ -1,10 +1,28 @@
-<div class="flex items-center justify-between flex-wrap gap-5 p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700">
+<div
+  class="flex items-center justify-between flex-wrap gap-5 p-6 bg-slate-800 rounded-2xl shadow-xl"
+>
   <div class="flex items-center gap-4">
-    <span class="text-base text-slate-300 font-semibold">{{ images().length }} image{{ images().length !== 1 ? 's' : '' }} ready</span>
+    <span class="text-base text-slate-300 font-semibold"
+      >{{ images().length }} image{{ images().length !== 1 ? 's' : '' }} ready</span
+    >
   </div>
-  <button class="flex items-center gap-2.5 px-6 py-3 bg-indigo-500 text-white text-base font-bold rounded-xl hover:bg-indigo-400 shadow-lg shadow-indigo-900/50 transition-all hover:scale-[1.02]" (click)="onDownloadAll()">
-    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  <button
+    class="flex items-center gap-2.5 px-6 py-3 bg-indigo-500 text-white text-base font-bold rounded-xl hover:bg-indigo-400 shadow-lg shadow-indigo-900/50 transition-all hover:scale-102 cursor-pointer"
+    (click)="onDownloadAll()"
+  >
+    <svg
+      class="w-5 h-5"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+      />
     </svg>
     Download All (ZIP)
   </button>

@@ -1,14 +1,21 @@
 <div class="min-h-screen bg-slate-900">
-  <header class="text-center py-14 px-5 bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-700 shadow-xl">
+  <header class="text-center p-8">
     <h1 class="text-4xl font-bold text-white mb-3">PDF to Image</h1>
     <p class="text-lg text-slate-400">Convert PDF pages to high-quality images</p>
   </header>
 
   <main class="max-w-5xl mx-auto py-10 px-5">
     @if (error()) {
-      <div class="flex items-center justify-between p-5 bg-red-900/30 border border-red-700 rounded-xl mb-8">
+      <div
+        class="flex items-center justify-between p-5 bg-red-900/30 border border-red-700 rounded-xl mb-8"
+      >
         <p class="text-red-400 font-medium">{{ error() }}</p>
-        <button (click)="stateService.reset()" class="px-5 py-2.5 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-500 transition-colors">Dismiss</button>
+        <button
+          (click)="stateService.reset()"
+          class="px-5 py-2.5 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-500 transition-colors"
+        >
+          Dismiss
+        </button>
       </div>
     }
 
@@ -17,8 +24,12 @@
     }
 
     @if (hasPdf() && !isCompleted()) {
-      <div class="flex flex-col items-center justify-center py-24 px-8 bg-slate-800 rounded-2xl shadow-xl border border-slate-700">
-        <div class="w-16 h-16 border-[5px] border-slate-600 border-t-indigo-400 rounded-full spinner mb-6"></div>
+      <div
+        class="flex flex-col items-center justify-center py-24 px-8 bg-slate-800 rounded-2xl shadow-xl border border-slate-700"
+      >
+        <div
+          class="w-16 h-16 border-[5px] border-slate-600 border-t-indigo-400 rounded-full spinner mb-6"
+        ></div>
         <p class="text-lg text-slate-200 font-medium">Converting PDF to images...</p>
         <p class="text-sm text-slate-500 mt-2">Please wait</p>
       </div>
@@ -26,11 +37,24 @@
 
     @if (isCompleted()) {
       <div class="flex flex-col gap-6">
-        <div class="flex items-center justify-between flex-wrap gap-5 p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700">
+        <div
+          class="flex items-center justify-between flex-wrap gap-5 p-6 bg-slate-800 rounded-2xl shadow-xl"
+        >
           <div class="flex items-center gap-5">
             <div class="p-3 bg-red-900/50 rounded-xl">
-              <svg class="w-10 h-10 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <svg
+                class="w-10 h-10 text-red-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
             </div>
             <div>
@@ -42,16 +66,26 @@
           <div class="flex items-center gap-5">
             <label class="flex items-center gap-3">
               <span class="text-sm font-semibold text-slate-300 whitespace-nowrap">Format</span>
-              <select (change)="onFormatChange($event)" class="px-4 py-2.5 border-2 border-slate-600 rounded-lg text-sm font-medium text-slate-200 bg-slate-700 cursor-pointer hover:border-indigo-400 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-900/50 transition-all">
+              <select
+                (change)="onFormatChange($event)"
+                class="px-4 py-2.5 border-2 border-slate-600 rounded-lg text-sm font-medium text-slate-200 bg-slate-700 cursor-pointer hover:border-indigo-400 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-900/50 transition-all"
+              >
                 <option value="png" [selected]="conversionOptions().format === 'png'">PNG</option>
-                <option value="jpeg" [selected]="conversionOptions().format === 'jpeg'">JPEG</option>
-                <option value="webp" [selected]="conversionOptions().format === 'webp'">WebP</option>
+                <option value="jpeg" [selected]="conversionOptions().format === 'jpeg'">
+                  JPEG
+                </option>
+                <option value="webp" [selected]="conversionOptions().format === 'webp'">
+                  WebP
+                </option>
               </select>
             </label>
-            
+
             <label class="flex items-center gap-3">
               <span class="text-sm font-semibold text-slate-300 whitespace-nowrap">Scale</span>
-              <select (change)="onScaleChange($event)" class="px-4 py-2.5 border-2 border-slate-600 rounded-lg text-sm font-medium text-slate-200 bg-slate-700 cursor-pointer hover:border-indigo-400 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-900/50 transition-all">
+              <select
+                (change)="onScaleChange($event)"
+                class="px-4 py-2.5 border-2 border-slate-600 rounded-lg text-sm font-medium text-slate-200 bg-slate-700 cursor-pointer hover:border-indigo-400 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-900/50 transition-all"
+              >
                 <option value="1" [selected]="conversionOptions().scale === 1">1x</option>
                 <option value="2" [selected]="conversionOptions().scale === 2">2x</option>
                 <option value="3" [selected]="conversionOptions().scale === 3">3x</option>
@@ -66,12 +100,12 @@
           (downloadSingle)="downloadSingle($event)"
         />
 
-        <app-image-grid
-          [images]="convertedImages()"
-          (downloadSingle)="downloadSingle($event)"
-        />
+        <app-image-grid [images]="convertedImages()" (downloadSingle)="downloadSingle($event)" />
 
-        <button class="self-center mt-4 px-8 py-3.5 bg-indigo-500 text-white text-base font-bold rounded-xl hover:bg-indigo-400 shadow-lg shadow-indigo-900/50 transition-all hover:scale-[1.02]" (click)="reset()">
+        <button
+          class="self-center mt-4 px-8 py-3.5 bg-indigo-500 text-white text-base font-bold rounded-xl hover:bg-indigo-400 shadow-lg shadow-indigo-900/50 transition-all hover:scale-[1.02]"
+          (click)="reset()"
+        >
           Convert Another PDF
         </button>
       </div>
