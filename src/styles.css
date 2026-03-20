@@ -1,3 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #1b77a4;
+  --color-on-primary: #edf2f5;
+
+  --color-secondary: white;
+  --color-on-secondary: white;
+
+  --color-background: #e0e9ee;
+  --color-on-background: #071a24;
+
+  --color-surface: #9ebcd3;
+  --color-on-surface: #070e1f;
+}
+
+[data-theme='dark'] {
+  --color-primary: white;
+  --color-on-primary: white;
+
+  --color-secondary: white;
+  --color-on-secondary: white;
+
+  --color-background: white;
+  --color-on-background: white;
+
+  --color-surface: white;
+  --color-on-surface: white;
+}
