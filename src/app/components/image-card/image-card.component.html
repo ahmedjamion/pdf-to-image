@@ -1,12 +1,8 @@
-<div class="border-2 border-secondary rounded bg-background">
-  <img
-    [src]="imageUrl()"
-    [alt]="'Page ' + image().pageNumber"
-    class="object-cover border-b-2 border-secondary"
-  />
-  <div class="flex items-center justify-between p-2">
+<div class="border-2 border-black rounded bg-white">
+  <img [src]="imageUrl()" [alt]="'Page ' + image().pageNumber" class="object-cover" />
+  <div class="flex items-center justify-between p-2 flex-wrap border-t-2 border-black">
     <p>Page {{ image().pageNumber }}</p>
-    <button class="bg-primary text-on-primary px-4 py-2 rounded" (click)="onDownload()">
+    <button class="bg-black text-white px-4 py-2 rounded" (click)="onDownload()">
       Download Page
     </button>
   </div>

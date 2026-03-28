@@ -1,9 +1,6 @@
 <div
-  class="h-full w-full flex flex-col items-center justify-center"
-  [class.border-indigo-400]="isDragging()"
-  [class.bg-slate-700]="isDragging()"
-  [class.border-red-400]="error()"
-  [class.bg-red-900]="error()"
+  class="h-full w-full flex flex-col gap-2 items-center justify-center bg-white"
+  [class.brightness-80]="isDragging()"
   appDropZone
   accept="application/pdf"
   (fileDropped)="onFileDropped($event)"
@@ -16,12 +13,12 @@
   <p>or</p>
   <button
     (click)="fileInput.click(); $event.stopPropagation()"
-    class="bg-primary text-on-primary px-4 py-2 rounded-sm cursor-pointer"
+    class="bg-black text-white px-4 py-2 rounded-sm cursor-pointer bg-bl"
   >
     Browse Files
   </button>
 
   @if (error()) {
-    <p class="text-red-400 text-base mt-6 font-semibold">{{ error() }}</p>
+    <p class="text-base font-semibold">{{ error() }}</p>
   }
 </div>

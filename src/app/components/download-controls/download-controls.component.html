@@ -1,21 +1,8 @@
-<div class="flex items-center justify-between flex-wrap gap-4">
-  <div class="flex items-center gap-4">
-    <span class="text-base font-semibold"
-      >{{ images().length }} image{{ images().length !== 1 ? 's' : '' }} ready</span
-    >
-  </div>
-  <div class="flex gap-4 flex-wrap">
-    <button
-      class="px-4 py-2 bg-primary text-on-primary rounded self-center cursor-pointer"
-      (click)="onDownloadAll()"
-    >
-      Download All (ZIP)
-    </button>
-    <button
-      class="px-4 py-2 bg-primary text-on-primary rounded self-center cursor-pointer"
-      (click)="onReset()"
-    >
-      Convert Another PDF
-    </button>
-  </div>
+<div class="grid grid-cols-2 gap-2">
+  <button class="px-4 py-2 bg-black text-white rounded cursor-pointer" (click)="onDownloadAll()">
+    Download All (ZIP)
+  </button>
+  <button class="px-4 py-2 bg-black text-white rounded cursor-pointer" (click)="onReset()">
+    Convert Another PDF
+  </button>
 </div>

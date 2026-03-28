@@ -1,12 +1,10 @@
 <main class="w-full h-screen items-center justify-center overflow-auto">
   @if (error()) {
-    <div
-      class="flex items-center justify-between p-5 bg-red-900/30 border border-red-700 rounded-xl"
-    >
-      <p class="text-red-400 font-medium">{{ error() }}</p>
+    <div class="flex items-center justify-between p-5 bg-white border-black rounded">
+      <p class="text-black font-medium">{{ error() }}</p>
       <button
         (click)="stateService.reset()"
-        class="px-5 py-2.5 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-500 transition-colors"
+        class="px-5 py-2.5 bg-black text-white font-semibold rounded-lg"
       >
         Dismiss
       </button>
@@ -18,9 +16,9 @@
   }
 
   @if (hasPdf() && isConverting()) {
-    <div class="flex flex-col items-center justify-center text-on-background h-full w-full">
+    <div class="flex flex-col gap-2 items-center justify-center text-on-background h-full w-full">
       <div
-        class="w-16 h-16 border-4 border-surface border-t-on-background rounded-full animate-spin mb-6"
+        class="w-10 h-10 border-4 border-black/50 border-t-black rounded-full animate-spin"
       ></div>
       <p class="text-lg">Converting PDF to images...</p>
       <p class="text-sm">Please wait</p>
@@ -29,41 +27,41 @@
 
   @if (isCompleted()) {
     <div class="flex flex-col">
-      <div
-        class="sticky top-0 bg-background text-on-background p-4 flex flex-col gap-4 border-b-2 border-secondary"
-      >
+      <div class="bg-white text-black p-4 flex flex-col gap-2 border-b-2 border-black">
         <div class="flex flex-wrap gap-4 justify-between items-center">
-          <div class="flex flex-col gap-2">
-            <h3 class="text-lg font-semibold truncate max-w-xs md:max-w-md">
+          <div class="flex flex-col">
+            <h3 class="text-xl font-semibold truncate max-w-xs md:max-w-md">
               Filename: {{ pdfDocument()?.name }}
             </h3>
-            <span class="text-base">Pages: {{ pdfDocument()?.numPages }}</span>
+            <span class="text-sm">Pages: {{ pdfDocument()?.numPages }}</span>
           </div>
-          <div class="flex flex-wrap items-center gap-5">
-            <label class="flex items-center gap-3">
-              <span class="text-sm font-semibold whitespace-nowrap">Format</span>
-              <select
-                (change)="onFormatChange($event)"
-                class="px-4 py-2.5 border-2 border-secondary rounded text-sm font-medium cursor-pointer focus:outline-none"
+          <div class="grid grid-cols-2 gap-2 w-full">
+            <label class="flex items-center border-2 rounded">
+              <span class="p-2 text-sm font-semibold whitespace-nowrap h-full bg-black text-white"
+                >Format</span
               >
-                <option value="png" [selected]="conversionOptions().format === 'png'">PNG</option>
-                <option value="jpeg" [selected]="conversionOptions().format === 'jpeg'">
-                  JPEG
-                </option>
-                <option value="webp" [selected]="conversionOptions().format === 'webp'">
-                  WebP
-                </option>
+              <select
+                [value]="conversionOptions().format"
+                (change)="onFormatChange($event)"
+                class="px-4 py-2 w-full text-sm font-medium cursor-pointer focus:outline-none"
+              >
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
               </select>
             </label>
-            <label class="flex items-center gap-3">
-              <span class="text-sm font-semibold whitespace-nowrap">Scale</span>
-              <select
-                (change)="onScaleChange($event)"
-                class="px-4 py-2.5 border-2 border-secondary rounded text-sm font-medium cursor-pointer focus:outline-none"
+            <label class="flex items-center border-2 rounded">
+              <span class="p-2 text-sm font-semibold whitespace-nowrap h-full bg-black text-white"
+                >Scale</span
               >
-                <option value="1" [selected]="conversionOptions().scale === 1">1x</option>
-                <option value="2" [selected]="conversionOptions().scale === 2">2x</option>
-                <option value="3" [selected]="conversionOptions().scale === 3">3x</option>
+              <select
+                [value]="conversionOptions().scale"
+                (change)="onScaleChange($event)"
+                class="px-4 py-2 w-full rounded text-sm font-medium cursor-pointer focus:outline-none"
+              >
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
               </select>
             </label>
           </div>

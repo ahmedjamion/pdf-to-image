@@ -13,14 +13,10 @@ import { removeFileExtension } from './shared/utils/file.utils';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    PdfUploaderComponent,
-    ImageGridComponent,
-    DownloadControlsComponent
-  ],
+  imports: [PdfUploaderComponent, ImageGridComponent, DownloadControlsComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   private pdfService = inject(PdfService);
@@ -38,9 +34,9 @@ export class App {
   error = this.stateService.error;
 
   conversionOptions = signal<ConversionOptions>({
-    format: 'png',
-    quality: 0.92,
-    scale: 2,
+    format: 'jpeg',
+    quality: 1,
+    scale: 1,
   });
 
   async onFileSelected(file: File): Promise<void> {
@@ -75,14 +71,14 @@ export class App {
 
       const blobs = await this.conversionService.convertAllPages(
         canvases,
-        this.conversionOptions()
+        this.conversionOptions(),
       );
 
       const items: DownloadItem[] = blobs.map((blob, index) => ({
         id: `page-${index + 1}`,
         pageNumber: index + 1,
         blob,
-        filename: `${removeFileExtension(doc.name)}.png`,
+        filename: `${removeFileExtension(doc.name)}.${this.conversionOptions().format}`,
         status: 'completed',
       }));
 
@@ -113,13 +109,16 @@ export class App {
 
   onFormatChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    this.conversionOptions.update(opt => ({ ...opt, format: select.value as 'png' | 'jpeg' | 'webp' }));
+    this.conversionOptions.update((opt) => ({
+      ...opt,
+      format: select.value as 'png' | 'jpeg' | 'webp',
+    }));
     this.convertToImages();
   }
 
   onScaleChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    this.conversionOptions.update(opt => ({ ...opt, scale: +select.value }));
+    this.conversionOptions.update((opt) => ({ ...opt, scale: +select.value }));
     this.convertToImages();
   }
 }
