@@ -14,6 +14,8 @@
 
   --color-surface: #9ebcd3;
   --color-on-surface: #070e1f;
+
+  --breakpoint-xs: 30rem;
 }
 
 [data-theme='dark'] {
