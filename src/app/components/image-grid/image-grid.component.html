@@ -1,8 +1,5 @@
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
   @for (image of images(); track image.id) {
-    <app-image-card
-      [image]="image"
-      (download)="onDownload($event)"
-    />
+    <app-image-card [image]="image" (download)="onDownload($event)" />
   }
 </div>

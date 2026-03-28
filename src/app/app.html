@@ -1,4 +1,4 @@
-<main class="max-w-4xl flex items-center justify-center">
+<main class="w-full h-screen items-center justify-center overflow-auto">
   @if (error()) {
     <div
       class="flex items-center justify-between p-5 bg-red-900/30 border border-red-700 rounded-xl"
@@ -17,8 +17,8 @@
     <app-pdf-uploader (fileSelected)="onFileSelected($event)" />
   }
 
-  @if (hasPdf() && !isCompleted()) {
-    <div class="flex flex-col items-center justify-center text-on-background">
+  @if (hasPdf() && isConverting()) {
+    <div class="flex flex-col items-center justify-center text-on-background h-full w-full">
       <div
         class="w-16 h-16 border-4 border-surface border-t-on-background rounded-full animate-spin mb-6"
       ></div>
@@ -28,58 +28,55 @@
   }
 
   @if (isCompleted()) {
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col">
       <div
-        class="flex items-center justify-between flex-wrap gap-5 p-6 bg-surface text-on-surface rounded-2xl"
+        class="sticky top-0 bg-background text-on-background p-4 flex flex-col gap-4 border-b-2 border-secondary"
       >
-        <div class="flex items-center gap-5">
-          <div>
-            <h3 class="text-lg font-semibold">{{ pdfDocument()?.name }}</h3>
-            <span class="text-base">{{ pdfDocument()?.numPages }} pages</span>
+        <div class="flex gap-4 justify-between items-center">
+          <div class="flex items-center gap-5">
+            <div>
+              <h3 class="text-lg font-semibold">Filename: {{ pdfDocument()?.name }}</h3>
+              <span class="text-base">Pages: {{ pdfDocument()?.numPages }}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-5">
+            <label class="flex items-center gap-3">
+              <span class="text-sm font-semibold whitespace-nowrap">Format</span>
+              <select
+                (change)="onFormatChange($event)"
+                class="px-4 py-2.5 border-2 border-secondary rounded text-sm font-medium cursor-pointer focus:outline-none"
+              >
+                <option value="png" [selected]="conversionOptions().format === 'png'">PNG</option>
+                <option value="jpeg" [selected]="conversionOptions().format === 'jpeg'">
+                  JPEG
+                </option>
+                <option value="webp" [selected]="conversionOptions().format === 'webp'">
+                  WebP
+                </option>
+              </select>
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="text-sm font-semibold whitespace-nowrap">Scale</span>
+              <select
+                (change)="onScaleChange($event)"
+                class="px-4 py-2.5 border-2 border-secondary rounded text-sm font-medium cursor-pointer focus:outline-none"
+              >
+                <option value="1" [selected]="conversionOptions().scale === 1">1x</option>
+                <option value="2" [selected]="conversionOptions().scale === 2">2x</option>
+                <option value="3" [selected]="conversionOptions().scale === 3">3x</option>
+              </select>
+            </label>
           </div>
         </div>
-
-        <div class="flex items-center gap-5">
-          <label class="flex items-center gap-3">
-            <span class="text-sm font-semibold whitespace-nowrap">Format</span>
-            <select
-              (change)="onFormatChange($event)"
-              class="px-4 py-2.5 border-2 rounded-lg text-sm font-medium cursor-pointer focus:outline-none"
-            >
-              <option value="png" [selected]="conversionOptions().format === 'png'">PNG</option>
-              <option value="jpeg" [selected]="conversionOptions().format === 'jpeg'">JPEG</option>
-              <option value="webp" [selected]="conversionOptions().format === 'webp'">WebP</option>
-            </select>
-          </label>
-
-          <label class="flex items-center gap-3">
-            <span class="text-sm font-semibold whitespace-nowrap">Scale</span>
-            <select
-              (change)="onScaleChange($event)"
-              class="px-4 py-2.5 border-2 rounded-lg text-sm font-medium cursor-pointer focus:outline-none"
-            >
-              <option value="1" [selected]="conversionOptions().scale === 1">1x</option>
-              <option value="2" [selected]="conversionOptions().scale === 2">2x</option>
-              <option value="3" [selected]="conversionOptions().scale === 3">3x</option>
-            </select>
-          </label>
-        </div>
+        <app-download-controls
+          [images]="convertedImages()"
+          (downloadAll)="downloadAll()"
+          (downloadSingle)="downloadSingle($event)"
+          (reset)="reset()"
+        />
       </div>
 
-      <app-download-controls
-        [images]="convertedImages()"
-        (downloadAll)="downloadAll()"
-        (downloadSingle)="downloadSingle($event)"
-      />
-
       <app-image-grid [images]="convertedImages()" (downloadSingle)="downloadSingle($event)" />
-
-      <button
-        class="self-center mt-4 px-8 py-3.5 bg-primary text-on-primary font-bold rounded-xl"
-        (click)="reset()"
-      >
-        Convert Another PDF
-      </button>
     </div>
   }
 </main>

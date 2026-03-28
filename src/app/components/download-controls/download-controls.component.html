@@ -1,15 +1,21 @@
-<div
-  class="flex items-center justify-between flex-wrap gap-5 p-6 bg-surface text-on-surface rounded-2xl"
->
+<div class="flex items-center justify-between">
   <div class="flex items-center gap-4">
     <span class="text-base font-semibold"
       >{{ images().length }} image{{ images().length !== 1 ? 's' : '' }} ready</span
     >
   </div>
-  <button
-    class="flex items-center px-6 py-3 text-base font-bold rounded-xl bg-primary text-on-primary transition-all cursor-pointer"
-    (click)="onDownloadAll()"
-  >
-    Download All (ZIP)
-  </button>
+  <div class="flex gap-4">
+    <button
+      class="px-4 py-2 bg-primary text-on-primary rounded self-center cursor-pointer"
+      (click)="onDownloadAll()"
+    >
+      Download All (ZIP)
+    </button>
+    <button
+      class="px-4 py-2 bg-primary text-on-primary rounded self-center cursor-pointer"
+      (click)="onReset()"
+    >
+      Convert Another PDF
+    </button>
+  </div>
 </div>

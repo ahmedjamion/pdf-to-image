@@ -3,14 +3,14 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primary: #1b77a4;
-  --color-on-primary: #edf2f5;
+  --color-primary: #11658f;
+  --color-on-primary: #f8feff;
 
-  --color-secondary: white;
-  --color-on-secondary: white;
+  --color-secondary: #b8b8b8;
+  --color-on-secondary: rgb(40, 40, 40);
 
-  --color-background: #e0e9ee;
-  --color-on-background: #071a24;
+  --color-background: #ffffff;
+  --color-on-background: #12191d;
 
   --color-surface: #9ebcd3;
   --color-on-surface: #070e1f;

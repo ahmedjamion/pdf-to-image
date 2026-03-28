@@ -6,15 +6,20 @@ import { DownloadItem } from '../../models/download-item.model';
   imports: [],
   templateUrl: './download-controls.component.html',
   styleUrl: './download-controls.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DownloadControlsComponent {
   images = input.required<DownloadItem[]>();
   downloadAll = output<void>();
+  reset = output<void>();
   downloadSingle = output<DownloadItem>();
 
   onDownloadAll(): void {
     this.downloadAll.emit();
+  }
+
+  onReset(): void {
+    this.reset.emit();
   }
 
   onDownloadSingle(image: DownloadItem): void {

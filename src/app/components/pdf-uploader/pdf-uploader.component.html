@@ -1,5 +1,5 @@
-<button
-  class="aspect-square border-4 border-dotted rounded-2xl p-8 flex flex-col items-center justify-center bg-surface text-on-surface border-on-surface cursor-pointer"
+<div
+  class="h-full w-full flex flex-col items-center justify-center"
   [class.border-indigo-400]="isDragging()"
   [class.bg-slate-700]="isDragging()"
   [class.border-red-400]="error()"
@@ -9,16 +9,19 @@
   (fileDropped)="onFileDropped($event)"
   (dragover)="onDragOver()"
   (dragleave)="onDragLeave()"
-  (click)="fileInput.click(); $event.stopPropagation()"
 >
   <input type="file" accept="application/pdf" (change)="onFileSelected($event)" #fileInput hidden />
 
-  <div class="flex flex-col items-center justify-center pointer-events-none">
-    <p class="text-xl font-semibold">Browse or drop your PDF here</p>
-    <p class="">PDF up to 50MB</p>
-  </div>
+  <p class="text-xl font-semibold">Drop your PDF file</p>
+  <p>or</p>
+  <button
+    (click)="fileInput.click(); $event.stopPropagation()"
+    class="bg-primary text-on-primary px-4 py-2 rounded-sm cursor-pointer"
+  >
+    Browse Files
+  </button>
 
   @if (error()) {
     <p class="text-red-400 text-base mt-6 font-semibold">{{ error() }}</p>
   }
-</button>
+</div>

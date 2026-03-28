@@ -1,9 +1,13 @@
-<div class="bg-surface text-on-surface overflow-clip rounded-xl transition-all flex flex-col">
-  <img [src]="imageUrl()" [alt]="'Page ' + image().pageNumber" class="object-cover" />
-  <button
-    class="m-2 flex items-center justify-center gap-2 px-4 py-2 text-on-primary bg-primary rounded-lg text-sm font-semibold cursor-pointer"
-    (click)="onDownload()"
-  >
-    Download Page
-  </button>
+<div class="border-2 border-secondary rounded bg-background">
+  <img
+    [src]="imageUrl()"
+    [alt]="'Page ' + image().pageNumber"
+    class="object-cover border-b-2 border-secondary"
+  />
+  <div class="flex items-center justify-between p-2">
+    <p>Page {{ image().pageNumber }}</p>
+    <button class="bg-primary text-on-primary px-4 py-2 rounded" (click)="onDownload()">
+      Download Page
+    </button>
+  </div>
 </div>

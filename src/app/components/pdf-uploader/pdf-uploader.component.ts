@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
-import { DropZoneDirective } from '../../shared/directives/drop-zone.directive';
 import { validatePdfFile } from '../../shared/utils/file.utils';
+import { DropZoneDirective } from '../../shared/directives/drop-zone.directive';
 
 @Component({
   selector: 'app-pdf-uploader',
   imports: [DropZoneDirective],
   templateUrl: './pdf-uploader.component.html',
   styleUrl: './pdf-uploader.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PdfUploaderComponent {
   fileSelected = output<File>();
@@ -36,7 +36,7 @@ export class PdfUploaderComponent {
   private processFile(file: File): void {
     this.error.set(null);
     const validation = validatePdfFile(file);
-    
+
     if (!validation.valid) {
       this.error.set(validation.error || 'Invalid file');
       return;
